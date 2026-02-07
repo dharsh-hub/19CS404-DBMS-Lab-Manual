@@ -22,122 +22,40 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 - Payments tracked for memberships and sessions.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+
+<img width="1446" height="850" alt="image" src="https://github.com/user-attachments/assets/ebc1b52e-2f23-4000-93de-4d031fa9e9c6" />
+
 
 ### Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+|  Member      |           MemberID (PK), Name,MembershipType, StartDate         |   Stores gym members’ details    |
+|    Program    |             ProgramID (PK), ProgramName, Type       |  Yoga, Zumba, Weight Training, etc.     |
+|   Trainer     |          TrainerID (PK), Name, Specialization          |    Each trainer may handle multiple programs   |
+|      Session	  |       SessionID (PK), Date, Time, TrainerID (FK), ProgramID (FK)             |  Personal training or group sessions     |
+|  Payment      |            PaymentID (PK), MemberID (FK), Amount, PaymentDate, Type        |   Tracks membership & session payments    |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
 |--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
+|   Registers (Member–Program)           |     M:N       |     Partial (not all members join all programs)          |   A member may join many programs    |
+|          AssignedTo (Trainer–Program)    |     M:N       |    Total for Program           |  Programs must have at least one trainer     |
+|   Attends (Member–Session)           |      M:N      |   Partial            |  Records attendance     |
+|    PaysFor (Member–Payment)          |   1:M         |  Total for Payment             |  Each payment belongs to one member     |
+|Covers (Payment–Session/Membership)        | 1:M      |  Optional     |  A payment can cover membership fee or personal session     |
 ### Assumptions
-- 
-- 
-- 
 
----
+Each member must have at least one active membership.
 
-# Scenario B: City Library Event & Book Lending System
+A program may have multiple trainers, but at least one is mandatory.
 
-**Business Context:**  
-The Central Library wants to manage book lending and cultural events.
+Members can attend multiple sessions; attendance is recorded separately.
 
-**Requirements:**  
-- Members borrow books, with loan and return dates tracked.  
-- Each book has title, author, and category.  
-- Library organizes events; members can register.  
-- Each event has one or more speakers/authors.  
-- Rooms are booked for events and study.  
-- Overdue fines apply for late returns.
+Personal training sessions are modeled as “Session” with specific trainer and member.
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
+Payments can be for either membership fees or personal sessions.
 
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
-
----
-
-# Scenario C: Restaurant Table Reservation & Ordering
-
-**Business Context:**  
-A popular restaurant wants to manage reservations, orders, and billing.
-
-**Requirements:**  
-- Customers can reserve tables or walk in.  
-- Each reservation includes date, time, and number of guests.  
-- Customers place food orders linked to reservations.  
-- Each order contains multiple dishes; dishes belong to categories (starter, main, dessert).  
-- Bills generated per reservation, including food and service charges.  
-- Waiters assigned to serve reservations.
-
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
-
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
-
----
-
-## Instructions for Students
-
-1. Complete **all three scenarios** (A, B, C).  
-2. Identify entities, relationships, and attributes for each.  
-3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
-4. Fill in all tables and assumptions for each scenario.  
-5. Export the completed Markdown (with diagrams) as **a single PDF**
+### RESULT
+Thus the ER Diagram for scenario A has been drawn and explained successfully.
